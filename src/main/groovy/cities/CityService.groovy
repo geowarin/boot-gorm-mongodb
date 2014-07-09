@@ -10,4 +10,7 @@ import org.springframework.stereotype.Service
  */
 @Service
 class CityService {
+    def getAllCities() {
+        City.findAll()
+    }
 }

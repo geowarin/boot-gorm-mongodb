@@ -4,3 +4,5 @@ spring:
         databaseName: "citydb"
         options:
             connectionsPerHost: 20
+
+logging.level.root: INFO
