@@ -1,14 +1,12 @@
 buildscript {
+    ext {
+        springBootVersion = '1.1.4.RELEASE'
+    }
     repositories {
-        mavenLocal()
         mavenCentral()
-    mavenLocal()
-        mavenCentral()
-        maven { url "http://repo.spring.io/milestone" }
-        maven { url "http://repo.spring.io/libs-release" }
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.4.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
 
@@ -17,20 +15,17 @@ apply plugin: 'spring-boot'
 
 jar {
     baseName = 'gs-spring-boot-gorm-mongodb'
-    version =  '0.1.0'
+    version = '0.1.0'
 }
 
 repositories {
-    mavenLocal()
     mavenCentral()
-    mavenLocal()
-        mavenCentral()
-    maven { url "http://repo.spring.io/milestone" }
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.grails:gorm-mongodb-spring-boot:1.1.0.RELEASE")
+    compile 'org.codehaus.groovy:groovy-all:2.3.6:indy'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.grails:gorm-mongodb-spring-boot:1.1.0.RELEASE'
 //    runtime("org.springframework.boot:spring-boot-starter-data-mongodb")
     compile 'cz.jirutka.spring:embedmongo-spring:1.2.2'
 
@@ -43,5 +38,5 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.11'
+    gradleVersion = '2.0'
 }
