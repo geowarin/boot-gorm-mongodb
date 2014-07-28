@@ -31,7 +31,8 @@ repositories {
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.grails:gorm-mongodb-spring-boot:1.1.0.RELEASE")
-    runtime("org.springframework.boot:spring-boot-starter-data-mongodb")
+//    runtime("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile 'cz.jirutka.spring:embedmongo-spring:1.2.2'
 
     testCompile 'junit:junit'
     testCompile 'org.springframework.boot:spring-boot-starter-test'
