@@ -1,7 +1,7 @@
 package cities
 
-import grails.persistence.*
-import grails.mongodb.geo.*
+import grails.mongodb.geo.Point
+import grails.persistence.Entity
 import org.bson.types.ObjectId
 
 @Entity
@@ -11,11 +11,15 @@ class City {
     Point location
 
     static constraints = {
-        name blank:false
-        location nullable:false
+        name blank: false
+        location nullable: false
     }
 
     static mapping = {
-        location geoIndex:'2dsphere'
+        location geoIndex: '2dsphere'
+    }
+
+    String toString() {
+        "$name = $location"
     }
 }

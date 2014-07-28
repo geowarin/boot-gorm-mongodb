@@ -1,5 +1,6 @@
 package cities
 
+import com.lordofthejars.nosqlunit.annotation.UsingDataSet
 import com.lordofthejars.nosqlunit.mongodb.MongoDbRule
 import com.mongodb.Mongo
 import cz.jirutka.spring.embedmongo.EmbeddedMongoBuilder
@@ -23,7 +24,7 @@ import static com.lordofthejars.nosqlunit.mongodb.MongoDbRule.MongoDbRuleBuilder
  */
 @RunWith(SpringJUnit4ClassRunner)
 @ContextConfiguration(classes = [EmbeddedConfig, Application])
-//@UsingDataSet
+@UsingDataSet
 //@WebAppConfiguration
 class CityServiceJUnitTest {
 
@@ -37,37 +38,26 @@ class CityServiceJUnitTest {
     @Rule
     public MongoDbRule mongoDbRule = newMongoDbRule().defaultSpringMongoDb('test')
 
-    @Autowired
-    Mongo mongo
-
     @Test
     void test() {
         City.withTransaction {
-            new City(name: 'Kikoo', location: [1, 2]).insert()
+            new City(name: 'Lauwl', location: [1, 2]).save()
         }
         def cities = City.findAll()
-        println cities.name
-        println mongo.getDB('test').getCollectionNames()
+        println cities
 
-        assert cities.size() == 1
+        assert cities.size() == 2
     }
 
     @Configuration
     static class EmbeddedConfig {
 
-//        @Bean
-//        public Mongo mongo() {
-//            new Fongo('leateat-test').mongo
-//        }
-
         @Bean
         public Mongo mongo() {
             return new EmbeddedMongoBuilder()
                     .version("2.4.5")
-//                    .bindIp("127.0.0.1")
                     .port(12345)
                     .build()
         }
-
     }
 }

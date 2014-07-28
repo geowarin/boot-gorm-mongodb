@@ -1,5 +1,11 @@
 {
     "city": [
-        {"name": "Kikoo", "position": [1, 2]}
+        {
+            "name": "Kikoo",
+            "location": {
+                "x": 1.2,
+                "y": 2.3
+            }
+        }
     ]
 }
